@@ -14,7 +14,7 @@ function indexPrime(param1) {
     }
     let prima = [];
     let angka = 2;
-    while (prima.length < param1) {
+    while (prima.length <= param1) {
         if (IndexPrimer2(angka)) {
             prima.push(angka)
         }

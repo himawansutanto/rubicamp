@@ -1,14 +1,14 @@
 function deretKaskus(n) {
     let number = [];
-    for (let i = 3; i <= n * 3; i +=3) {
-        if (i % 5 == 0 && i % 6 == 0) {
+    for (let index = 3; index <= n * 3; index += 3) {
+        if (index % 5 == 0 && index % 6 == 0) {
             number.push('KASKUS');
-        } else if (i % 5 == 0) {
+        } else if (index % 5 == 0) {
             number.push('KAS');
-        } else if (i % 6 == 0) {
+        } else if (index % 6 == 0) {
             number.push('KUS');
         } else {
-            number.push(i);
+            number.push(index);
         }
     }
     return number;

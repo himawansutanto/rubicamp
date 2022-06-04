@@ -4,7 +4,6 @@ function pola(str) {
     let number2 = number[0].split('*')[1].trim();
     let number3 = number[1].trim();
 
-    console.log(number1, number2, number3);
     for (let i = 0; i <= 9; i++) {
         for (let j = 0; j <= 9; j++) {
             if (parseInt(number1.replace('#', i)) * parseInt(number2) == parseInt(number3.replace('#', j)))

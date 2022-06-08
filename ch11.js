@@ -30,4 +30,5 @@ rl.on('line', (jawaban) => {
     console.log(isi[data].definition)
     rl.prompt()
   }
-  })
+  }
+  )

@@ -6,7 +6,7 @@ CREATE TABLE Jurusan (
 CREATE TABLE Mahasiswa (
     nim             VARCHAR(6) NOT NULL PRIMARY KEY,
     nama            VARCHAR(100) NOT NULL,
-    alamat          TEXT NULL,
+    alamat          TEXT,
     kodejurusan     VARCHAR(4) NOT NULL,
     FOREIGN KEY (kodejurusan) REFERENCES Jurusan (kodejurusan)
 );
@@ -19,12 +19,12 @@ CREATE TABLE Dosen (
 CREATE TABLE Matakuliah (
     kodematakuliah  VARCHAR(5) NOT NULL PRIMARY KEY,
     nama            VARCHAR(100) NOT NULL,
-    sks             INT NOT NULL
+    sks             INTEGER NOT NULL
 );
 
 CREATE TABLE Kontrak (
-    idkontrak       VARCHAR(10) NOT NULL PRIMARY KEY,
-    nilai           VARCHAR(5)  NULL,
+    idkontrak       INTEGER PRIMARY KEY AUTOINCREMENT,
+    nilai           VARCHAR(5),
     nipdosen        VARCHAR(5) NOT NULL,
     kodematakuliah  VARCHAR(5) NOT NULL,
     nim             VARCHAR(6) NOT NULL,
@@ -57,10 +57,10 @@ INSERT INTO Matakuliah VALUES ('B1011', 'Bahasa Arab', 2 );
 INSERT INTO Matakuliah VALUES ('A1012', 'Anatomi', 3 );
 INSERT INTO Matakuliah VALUES ('M1013', 'Matematika IA', 3 );
 INSERT INTO Matakuliah VALUES ('A1014', 'Astrodinamika', 3 );
-INSERT INTO Matakuliah VALUES ('P1015', 'Pengantar Sistem Informasi', 3);
+INSERT INTO Matakuliah VALUES ('P1015', 'Data Mining', 3);
 
-INSERT INTO Kontrak VALUES (01 , 100, 101090, 'B1011', 10109250);
-INSERT INTO Kontrak VALUES (02 , 90, 101091, 'A1012', 10109251);
-INSERT INTO Kontrak VALUES (03 , 95, 101092, 'M1013', 10109252);
-INSERT INTO Kontrak VALUES (04 , 85, 101093, 'A1014', 10109253);
-INSERT INTO Kontrak VALUES (05 , 90, 101094, 'P1015', 10109254);
+INSERT INTO Kontrak (nilai, nipdosen, kodematakuliah, nim) VALUES ( 'A', 101090, 'B1011', 10109250);
+INSERT INTO Kontrak (nilai, nipdosen, kodematakuliah, nim) VALUES ( 'B', 101091, 'A1012', 10109251);
+INSERT INTO Kontrak (nilai, nipdosen, kodematakuliah, nim) VALUES ( 'B', 101092, 'M1013', 10109252);
+INSERT INTO Kontrak (nilai, nipdosen, kodematakuliah, nim) VALUES ( 'D', 101093, 'A1014', 10109253);
+INSERT INTO Kontrak (nilai, nipdosen, kodematakuliah, nim) VALUES ( 'E', 101094, 'P1015', 10109254);

@@ -40,13 +40,13 @@ INSERT INTO Jurusan VALUES ('R003', 'Rekayasa Hayati');
 INSERT INTO Jurusan VALUES ('T004', 'Teknik Penerbangan');
 INSERT INTO Jurusan VALUES ('S005', 'Sistem Informasi');
 
-INSERT INTO Mahasiswa VALUES (10109250, 'Wildan', 'Bandung', 'Rekayasa Hayati');
-INSERT INTO Mahasiswa VALUES (10109251, 'Hilmi', 'Bandung', 'Ilmu Hadis');
-INSERT INTO Mahasiswa VALUES (10109252, 'Nanda', 'Makasar', 'Teknik Penerbangan');
-INSERT INTO Mahasiswa VALUES (10109253, 'Rahmat', 'Makasar', 'Kedokteran');
-INSERT INTO Mahasiswa VALUES (10109254, 'Alam', 'Bandung', 'Kedokteran');
-INSERT INTO Mahasiswa VALUES (10109255, 'Rizky', 'Bandung', 'Ilmu Hadis');
-INSERT INTO Mahasiswa VALUES (10109256, 'Himawan', 'Cianjur', 'Sistem Informasi');
+INSERT INTO Mahasiswa VALUES (10109250, 'Wildan', 'Bandung', 'I001');
+INSERT INTO Mahasiswa VALUES (10109251, 'Hilmi', 'Bandung', 'K002');
+INSERT INTO Mahasiswa VALUES (10109252, 'Nanda', 'Makasar', 'R003');
+INSERT INTO Mahasiswa VALUES (10109253, 'Rahmat', 'Makasar', 'T004');
+INSERT INTO Mahasiswa VALUES (10109254, 'Alam', 'Bandung', 'S005');
+INSERT INTO Mahasiswa VALUES (10109255, 'Rizky', 'Bandung', 'I001');
+INSERT INTO Mahasiswa VALUES (10109256, 'Himawan', 'Cianjur', 'S005');
 
 INSERT INTO Dosen VALUES (101090, 'Prof. Dr. Arifuddin, M.Ag.');
 INSERT INTO Dosen VALUES (101091, 'Prof.Dr. Didik Gunawan Tamtomo, dr,PAK,MM,M.Kes.');
@@ -76,7 +76,7 @@ INSERT INTO Kontrak (nama, nilai, nipdosen, kodematakuliah, nim) VALUES ('Himawa
 
 
 --TAMPILKAN MAHASISWA DAN JURUSAN
-SELECT Mahasiswa.nama, Mahasiswa.kodejurusan FROM Mahasiswa;
+SELECT Mahasiswa.nim, Mahasiswa.nama, Mahasiswa.alamat, Jurusan.namajurusan FROM Mahasiswa JOIN Jurusan ON Mahasiswa.kodejurusan = Jurusan.kodejurusan;
 --  TAMPILKAN DIBAWAH UMUR 20
 SELECT Mahasiswa.nama, Mahasiswa.umur FROM Mahasiswa WHERE umur <20;
 -- TAMPILKA DIATAS NILAI B
@@ -86,12 +86,12 @@ SELECT Mahasiswa.nama, Mahasiswa.nim, sum(Matakuliah.sks) FROM Mahasiswa, Kontra
 -- TAMPILKAN DATA MINING
 SELECT Mahasiswa.nama, Mahasiswa.nim, Matakuliah.kodematakuliah, Matakuliah.nama FROM Mahasiswa, Matakuliah, Kontrak WHERE Kontrak.nim = Mahasiswa.nim AND Kontrak.kodematakuliah = Matakuliah.kodematakuliah AND Matakuliah.nama = "Data Mining";
 -- TAMPILKAN JUMLAH MAHASISWA DAN DOSEN
-SELECT Dosen.nipdosen, Dosen.nama, count(Mahasiswa.nim) FROM Mahasiswa, Dosen, Kontrak WHERE Dosen.nipdosen = Kontrak.nipdosen AND Mahasiswa.nim = Kontrak.nim AND Kontrak.nama = Mahasiswa.nama GROUP BY Dosen.nama;
+SELECT Dosen.nipdosen, Dosen.nama, count(DISTINCT Mahasiswa.nim) FROM Mahasiswa, Dosen, Kontrak WHERE Dosen.nipdosen = Kontrak.nipdosen AND Mahasiswa.nim = Kontrak.nim AND Kontrak.nama = Mahasiswa.nama GROUP BY Dosen.nama;
 -- URUTKAN UMUR
 SELECT Mahasiswa.nama, Mahasiswa.nim, Mahasiswa.umur FROM Mahasiswa ORDER BY umur ASC;
 SELECT Mahasiswa.nama, Mahasiswa.nim, Mahasiswa.umur FROM Mahasiswa ORDER BY umur DESC;
 -- TAMPILKAN NILAI D AND E JOIN WHERE
-SELECT Mahasiswa.nim, Mahasiswa.nama, Jurusan.namajurusan, Dosen.nama, Matakuliah.nama, Kontrak.nilai FROM Mahasiswa JOIN  Jurusan JOIN dosen JOIN  Matakuliah JOIN  Kontrak WHERE Mahasiswa.nim = Kontrak.nim AND Matakuliah.kodematakuliah = Kontrak.kodematakuliah AND dosen.nipdosen = Kontrak.nipdosen AND Mahasiswa.kodejurusan = Jurusan.namajurusan AND Kontrak.nilai >"C";
+SELECT Mahasiswa.nim, Mahasiswa.nama, Jurusan.namajurusan, Dosen.nama, Matakuliah.nama, Kontrak.nilai FROM Mahasiswa JOIN  Jurusan JOIN dosen JOIN  Matakuliah JOIN  Kontrak WHERE Mahasiswa.nim = Kontrak.nim AND Matakuliah.kodematakuliah = Kontrak.kodematakuliah AND dosen.nipdosen = Kontrak.nipdosen AND Mahasiswa.kodejurusan = Jurusan.kodejurusan AND Kontrak.nilai >"C";
  
 ALTER TABLE Mahasiswa ADD COLUMN umur VARCHAR(2);
 

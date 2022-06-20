@@ -1,5 +1,5 @@
 --TAMPILKAN MAHASISWA DAN JURUSAN
-SELECT Mahasiswa.nama, Mahasiswa.kodejurusan FROM Mahasiswa;
+SELECT Mahasiswa.nim, Mahasiswa.nama, Mahasiswa.alamat, Jurusan.namajurusan FROM Mahasiswa JOIN Jurusan ON Mahasiswa.kodejurusan = Jurusan.kodejurusan;
 --  TAMPILKAN DIBAWAH UMUR 20
 SELECT Mahasiswa.nama, Mahasiswa.umur FROM Mahasiswa WHERE umur <20;
 -- TAMPILKA DIATAS NILAI B
@@ -9,7 +9,7 @@ SELECT Mahasiswa.nama, Mahasiswa.nim, sum(Matakuliah.sks) FROM Mahasiswa, Kontra
 -- TAMPILKAN DATA MINING
 SELECT Mahasiswa.nama, Mahasiswa.nim, Matakuliah.kodematakuliah, Matakuliah.nama FROM Mahasiswa, Matakuliah, Kontrak WHERE Kontrak.nim = Mahasiswa.nim AND Kontrak.kodematakuliah = Matakuliah.kodematakuliah AND Matakuliah.nama = "Data Mining";
 -- TAMPILKAN JUMLAH MAHASISWA DAN DOSEN
-SELECT Dosen.nipdosen, Dosen.nama, count(Mahasiswa.nim) FROM Mahasiswa, Dosen, Kontrak WHERE Dosen.nipdosen = Kontrak.nipdosen AND Mahasiswa.nim = Kontrak.nim AND Kontrak.nama = Mahasiswa.nama GROUP BY Dosen.nama;
+SELECT Dosen.nipdosen, Dosen.nama, count(DISTINCT Mahasiswa.nim) FROM Mahasiswa, Dosen, Kontrak WHERE Dosen.nipdosen = Kontrak.nipdosen AND Mahasiswa.nim = Kontrak.nim AND Kontrak.nama = Mahasiswa.nama GROUP BY Dosen.nama;
 -- URUTKAN UMUR
 SELECT Mahasiswa.nama, Mahasiswa.nim, Mahasiswa.umur FROM Mahasiswa ORDER BY umur ASC;
 SELECT Mahasiswa.nama, Mahasiswa.nim, Mahasiswa.umur FROM Mahasiswa ORDER BY umur DESC;

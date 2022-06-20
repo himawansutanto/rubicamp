@@ -14,5 +14,4 @@ SELECT Dosen.nipdosen, Dosen.nama, count(DISTINCT Mahasiswa.nim) FROM Mahasiswa,
 SELECT Mahasiswa.nama, Mahasiswa.nim, Mahasiswa.umur FROM Mahasiswa ORDER BY umur ASC;
 SELECT Mahasiswa.nama, Mahasiswa.nim, Mahasiswa.umur FROM Mahasiswa ORDER BY umur DESC;
 -- TAMPILKAN NILAI D AND E JOIN WHERE
-SELECT Mahasiswa.nim, Mahasiswa.nama, Jurusan.namajurusan, Dosen.nama, Matakuliah.nama, Kontrak.nilai FROM Mahasiswa JOIN  Jurusan JOIN dosen JOIN  Matakuliah JOIN  Kontrak WHERE Mahasiswa.nim = Kontrak.nim AND Matakuliah.kodematakuliah = Kontrak.kodematakuliah AND dosen.nipdosen = Kontrak.nipdosen AND Mahasiswa.kodejurusan = Jurusan.namajurusan AND Kontrak.nilai >"C";
- 
+SELECT Mahasiswa.nim, Mahasiswa.nama, Jurusan.namajurusan, Dosen.nama, Matakuliah.nama, Kontrak.nilai FROM Mahasiswa JOIN  Jurusan JOIN dosen JOIN  Matakuliah JOIN  Kontrak WHERE Mahasiswa.nim = Kontrak.nim AND Matakuliah.kodematakuliah = Kontrak.kodematakuliah AND dosen.nipdosen = Kontrak.nipdosen AND Mahasiswa.kodejurusan = Jurusan.kodejurusan AND Kontrak.nilai >"C";

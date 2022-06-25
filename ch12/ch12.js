@@ -7,7 +7,7 @@ const kuis = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'))
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
-    prompt: 'Jawaban : '
+    prompt: 'Tebakam : '
 });
 
 let hitung = 0;

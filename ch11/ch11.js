@@ -4,7 +4,7 @@ const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
-  prompt: 'jawaban:'
+  prompt: 'Tebakan:'
 });
 const baca = fs.readFileSync('data.json', 'utf-8')
 var isi = JSON.parse(baca)
@@ -15,7 +15,7 @@ rl.prompt();
 
 rl.on('line', (jawaban) => {
   if (jawaban.toLowerCase() == isi[data].term) {
-    console.log('jawaban anda benar!')
+    console.log('tebakan anda benar!')
     data++
     if (data < isi.length) {
       console.log(isi[data].definition)
@@ -26,7 +26,7 @@ rl.on('line', (jawaban) => {
       rl.close()
     }
   } else if (jawaban.toLowerCase() != isi[data].term) {
-    console.log('jawaban anda kurang tepat!')
+    console.log('tebakan anda kurang tepat!')
     console.log(isi[data].definition)
     rl.prompt()
   }

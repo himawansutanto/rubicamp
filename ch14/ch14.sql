@@ -34,6 +34,14 @@ CREATE TABLE Kontrak (
     FOREIGN KEY (nim) REFERENCES Mahasiswa (nim)        
 );
 
+CREATE TABLE Users (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    username        VARCHAR(10) NOT NULL,
+    password        INTEGER NOT NULL,
+    access          VARCHAR(10)
+    
+);
+
 INSERT INTO Jurusan VALUES ('I001', 'Ilmu Hadis');
 INSERT INTO Jurusan VALUES ('K002', 'Kedokteran');
 INSERT INTO Jurusan VALUES ('R003', 'Rekayasa Hayati');
@@ -73,3 +81,6 @@ INSERT INTO Kontrak (nama, nilai, nipdosen, kodematakuliah, nim) VALUES ('Himawa
 INSERT INTO Kontrak (nama, nilai, nipdosen, kodematakuliah, nim) VALUES ('Himawan', 'D', 101094, 'P1016', 10109256);
 INSERT INTO Kontrak (nama, nilai, nipdosen, kodematakuliah, nim) VALUES ('Himawan', 'D', 101094, 'P1017', 10109256);
 INSERT INTO Kontrak (nama, nilai, nipdosen, kodematakuliah, nim) VALUES ('Himawan', 'E', 101094, 'P1018', 10109256);
+
+INSERT INTO Users (username, password, access) VALUES ('rubi', 123, 'Admin');
+INSERT INTO Users (username, password, access) VALUES ('himawan', 12, 'Guest');

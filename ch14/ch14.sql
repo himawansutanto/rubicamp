@@ -35,10 +35,9 @@ CREATE TABLE Kontrak (
 );
 
 CREATE TABLE Users (
-    id              INTEGER PRIMARY KEY AUTOINCREMENT,
-    username        VARCHAR(10) NOT NULL,
+    username        VARCHAR(10) NOT NULL PRIMARY KEY,
     password        INTEGER NOT NULL,
-    access          VARCHAR(10)
+    access          VARCHAR(10) NOT NULL
     
 );
 

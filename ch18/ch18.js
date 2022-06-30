@@ -1,14 +1,13 @@
 const readline = require('readline');
 const fs = require('fs');
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('university.db');
 const { table } = require('console');
 const Table = require('cli-table');
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
 });
-
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('university.db');
 
 function login() {
     console.log(`==============================================================================

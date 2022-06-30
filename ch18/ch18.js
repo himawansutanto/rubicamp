@@ -1,5 +1,7 @@
 const readline = require('readline');
 const fs = require('fs');
+const { table } = require('console');
+const Table = require('cli-table');
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -75,7 +77,7 @@ const Mainmenu = () => {
             case '6':
                 console.log(`==============================================================================`)
                 console.log('kamu telah keluar.');
-                username();
+                login();
                 break;
             default:
                 console.log(`anda salah memasukan pilihan`);
@@ -117,6 +119,28 @@ const mahasiswaMenu = () => {
     })
 }
 
+function daftarMahasiswa() {
+    db.all(`select Mahasiswa.nim, 
+                   Mahasiswa.nama, 
+                   Mahasiswa.alamat, 
+                   Jurusan.kodejurusan, 
+                   Jurusan.namajurusan 
+                   from Mahasiswa,Jurusan 
+                   Where Mahasiswa.kodejurusan = Jurusan.kodejurusan`, (err, data) => {
+        let table = new Table({
+            head: ['NIM', 'Nama Mahasiswa', 'Alamat Mahasiswa', 'Kode Jurusan']
+            , colWidths: [10, 20, 20, 15]
+        });
+        data.forEach((row) => {
+            table.push(
+                [row.nim, row.nama, row.alamat, row.kodejurusan]
+            );
+        })
+        console.log(table.toString());
+        mahasiswaMenu()
+    })
+}
+
 function kembaliMahasiwa() {
     Mainmenu();
 }
@@ -143,6 +167,22 @@ const jurusanMenu = () => {
                 console.log(`anda salah memasukan pilihan`);
                 Mainmenu();
         }
+    })
+}
+
+function daftarJurusan() {
+    db.all(`select * from Jurusan`, (err, data) => {
+        let table = new Table({
+            head: ['Kode Jurusan', 'Nama Jurusan']
+            , colWidths: [15, 20]
+        });
+        data.forEach((row) => {
+            table.push(
+                [row.kodejurusan, row.namajurusan]
+            );
+        })
+        console.log(table.toString());
+        Mainmenu()
     })
 }
 
@@ -183,7 +223,23 @@ const dosenMenu = () => {
     })
 }
 
-function kembaliDosen(){
+function daftarDosen() {
+    db.all(`select * from Dosen`, (err, data) => {
+        let table = new Table({
+            head: ['NIP Dosen', 'Nama Dosen']
+            , colWidths: [15, 50]
+        });
+        data.forEach((row) => {
+            table.push(
+                [row.nipdosen, row.nama]
+            );
+        })
+        console.log(table.toString());
+        dosenMenu()
+    })
+}
+
+function kembaliDosen() {
     Mainmenu();
 }
 
@@ -212,7 +268,23 @@ const matakuliahMenu = () => {
     })
 }
 
-function kembaliMatakuliah(){
+function daftarMatakuliah() {
+    db.all(`select * from Matakuliah`, (err, data) => {
+        let table = new Table({
+            head: ['Kode Matakuliah', 'Nama Matakuliah', 'SKS']
+            , colWidths: [20, 30, 5]
+        });
+        data.forEach((row) => {
+            table.push(
+                [row.kodematakuliah, row.nama, row.sks]
+            );
+        })
+        console.log(table.toString());
+        dosenMenu()
+    })
+}
+
+function kembaliMatakuliah() {
     Mainmenu();
 }
 
@@ -241,6 +313,22 @@ const kontrakMenu = () => {
     })
 }
 
-function kembaliKontrak(){
+function daftarKontrak() {
+    db.all(`select * from Kontrak`, (err, data) => {
+        let table = new Table({
+            head: ['ID Kontrak', 'Nama Mahasiswa', 'Nilai', 'NIP Dosen', 'Kode Matakuliah', 'NIM']
+            , colWidths: [15, 20, 10, 15, 20, 10]
+        });
+        data.forEach((row) => {
+            table.push(
+                [row.idkontrak, row.nama, row.nilai, row.nipdosen, row.kodematakuliah, row.nim]
+            );
+        })
+        console.log(table.toString());
+        kontrakMenu()
+    })
+}
+
+function kembaliKontrak() {
     Mainmenu();
 }
